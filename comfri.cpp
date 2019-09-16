@@ -10,21 +10,28 @@ class Complex
 			real=r;
 			img=i;
 		}
-		Complex operator +(Complex const &o)
-		{
-			Complex res;
-			res.real=real+o.real;
-			res.img=img+o.img;
-			return res;
-		}
-		void print()
-		{
-			cout<<real<<" + "<<img<<"i"<<endl;
-		}
+		friend ostream & operator <<(ostream &out,const Complex &c);
+		friend istream & operator >>(istream &in,Complex &c);
 };
+ostream & operator << (ostream &out,const Complex &c)
+{
+	out<<c.real;
+	out<<"+i"<<c.img<<endl;
+	return out;
+}
+istream & operator >>(istream &in,Complex &c)
+{
+	cout<<"Enter Real Part: ";
+	in>>c.real;
+	cout<<"Enter Imaginary Part: ";
+	in>>c.img;
+	return in;
+}
 int main()
 {
-	Complex c1(2,3),c2(4,5),c3;
-	c3=c1+c2;
-	c3.print();
+	Complex c1;
+	cin>>c1;
+	cout<<"The complex object is: ";
+	cout<<c1;
+	return 0;
 }
